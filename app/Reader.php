@@ -55,6 +55,7 @@ class Reader implements Log\LoggerAwareInterface
 	}
 
 	public function run($params) {
+        echo "<pre>";
 		$this->checkVersion(isset($params['version']) ? $params['version'] : null);
 		$this->loadTranslations();
 
@@ -95,14 +96,15 @@ class Reader implements Log\LoggerAwareInterface
 		$storage->save();
 
 		$this->log("Done saving.");
+        echo "</pre>";
 	}
 
 	private function getItemsPath() {
-		return $this->config->paths->versions . '/' . $this->version['version'];
+		return $this->config->paths->versions . $this->version['version'];
 	}
 
 	private function getTranslationsPath() {
-		return $this->config->paths->texts . '/' . $this->version['version'];
+		return $this->config->paths->texts . $this->version['version'];
 	}
 
 	private function checkVersion($version = null) {

@@ -32,7 +32,7 @@ class Path
 	}
 
 	public function extractItems($target_path) {
-		if (!file_exists($target_path)) mkdir($target_path, 777, true);
+		if (!file_exists($target_path)) mkdir($target_path, 0777, true);
 
 		Decompressor::init();
 
@@ -56,7 +56,7 @@ class Path
 				$target_dir = dirname($target_filename);
 
 				if (!file_exists($target_dir)) {
-					mkdir($target_dir, 777, true);
+					mkdir($target_dir, 0777, true);
 				}
 
 				// @TODO: This is dirty, jesus
@@ -73,7 +73,7 @@ class Path
 	}
 
 	public function extractTranslations($target_path) {
-		if (!file_exists($target_path)) mkdir($target_path, 777, true);
+		if (!file_exists($target_path)) mkdir($target_path, 0777, true);
 
 		$folder = $this->getTranslationsPath();
 		$folder_handle = opendir($folder);

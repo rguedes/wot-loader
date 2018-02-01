@@ -21,7 +21,10 @@ class Decompressor
 				$xmlNode = new \SimpleXMLElement("<{$name}></{$name}>");
 				static::$PS->readElement($reader, $xmlNode, $list);
 				$reader->close();
-				file_put_contents($target, $xmlNode->asXML());
+                $string = str_replace("<0>", "", $xmlNode->asXML());
+                $string = str_replace("</0>", "", $string);
+                $string = str_replace("<0/>", "", $string);
+				file_put_contents($target, $string);
 				return true;
 			} else {
 				return false;
